@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdbool.h>
 
 typedef enum
 {
@@ -71,7 +71,7 @@ OwnerNode *ownerHead = NULL;
  * @param str modifiable string
  * Why we made it: We must handle CR/LF or random spaces in user input.
  */
-void trimWhitespace(char *str);
+void trimWhitespace(char *str); 
 
 /**
  * @brief C99-friendly strdup replacement.
@@ -79,7 +79,7 @@ void trimWhitespace(char *str);
  * @return newly allocated copy of src
  * Why we made it: Some old systems lack strdup; we do it ourselves.
  */
-char *myStrdup(const char *src);
+char *myStrdup(const char *src); 
 
 /**
  * @brief Read an integer safely, re-prompt if invalid.
@@ -87,14 +87,14 @@ char *myStrdup(const char *src);
  * @return valid integer from user
  * Why we made it: We want robust menu/ID input handling.
  */
-int readIntSafe(const char *prompt);
+int readIntSafe(const char *prompt); 
 
 /**
  * @brief Read a line from stdin, store in malloc'd buffer, trim whitespace.
  * @return pointer to the newly allocated string (caller frees)
  * Why we made it: We need flexible name input that handles CR/LF etc.
  */
-char *getDynamicInput(void);
+char *getDynamicInput(void); 
 
 /**
  * @brief Return a string for a given PokemonType enum.
@@ -102,7 +102,7 @@ char *getDynamicInput(void);
  * @return string like "GRASS", "FIRE", etc.
  * Why we made it: So we can print readable type names.
  */
-const char *getTypeName(PokemonType type);
+const char *getTypeName(PokemonType type); 
 
 /* ------------------------------------------------------------
    2) Creating & Freeing Nodes
@@ -114,7 +114,7 @@ const char *getTypeName(PokemonType type);
  * @return newly allocated PokemonNode*
  * Why we made it: We need a standard way to allocate BST nodes.
  */
-PokemonNode *createPokemonNode(const PokemonData *data);
+PokemonNode *createPokemonNode(const PokemonData *data); 
 
 /**
  * @brief Create an OwnerNode for the circular owners list.
@@ -123,28 +123,28 @@ PokemonNode *createPokemonNode(const PokemonData *data);
  * @return newly allocated OwnerNode*
  * Why we made it: Each user is represented as an OwnerNode.
  */
-OwnerNode *createOwner(char *ownerName, PokemonNode *starter);
+OwnerNode *createOwner(char *ownerName, PokemonNode *starter); 
 
 /**
  * @brief Free one PokemonNode (including name).
  * @param node pointer to node
  * Why we made it: Avoid memory leaks for single nodes.
  */
-void freePokemonNode(PokemonNode *node);
+void freePokemonNode(PokemonNode *node); 
 
 /**
  * @brief Recursively free a BST of PokemonNodes.
  * @param root BST root
  * Why we made it: Clearing a user’s entire Pokedex means freeing a tree.
  */
-void freePokemonTree(PokemonNode *root);
+void freePokemonTree(PokemonNode *root); 
 
 /**
  * @brief Free an OwnerNode (including name and entire Pokedex BST).
  * @param owner pointer to the owner
  * Why we made it: Deleting an owner also frees their Pokedex & name.
  */
-void freeOwnerNode(OwnerNode *owner);
+void freeOwnerNode(OwnerNode *owner); 
 
 /* ------------------------------------------------------------
    3) BST Insert, Search, Remove
@@ -157,7 +157,7 @@ void freeOwnerNode(OwnerNode *owner);
  * @return updated BST root
  * Why we made it: Standard BST insertion ignoring duplicates.
  */
-PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode);
+PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode); 
 
 /**
  * @brief BFS search for a Pokemon by ID in the BST.
@@ -166,7 +166,7 @@ PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode);
  * @return pointer to found node or NULL
  * Why we made it: BFS ensures we find nodes even in an unbalanced tree.
  */
-PokemonNode *searchPokemonBFS(PokemonNode *root, int id);
+PokemonNode *searchPokemonBFS(PokemonNode *root, int id); 
 
 /**
  * @brief Remove node from BST by ID if found (BST removal logic).
@@ -175,7 +175,7 @@ PokemonNode *searchPokemonBFS(PokemonNode *root, int id);
  * @return updated BST root
  * Why we made it: We handle special cases of a BST remove (0,1,2 children).
  */
-PokemonNode *removeNodeBST(PokemonNode *root, int id);
+PokemonNode *removeNodeBST(PokemonNode *root, int id); 
 
 /**
  * @brief Combine BFS search + BST removal to remove Pokemon by ID.
@@ -184,7 +184,7 @@ PokemonNode *removeNodeBST(PokemonNode *root, int id);
  * @return updated BST root
  * Why we made it: BFS confirms existence, then removeNodeBST does the removal.
  */
-PokemonNode *removePokemonByID(PokemonNode *root, int id);
+PokemonNode *removePokemonByID(PokemonNode *root, int id); 
 
 /* ------------------------------------------------------------
    4) Generic BST Traversals (Function Pointers)
@@ -193,7 +193,7 @@ PokemonNode *removePokemonByID(PokemonNode *root, int id);
 // Please notice, it's not really generic, it's just a demonstration of function pointers.
 // so don't be confused by the name, but please remember that you must use it.
 
-typedef void (*VisitNodeFunc)(PokemonNode *);
+typedef void (*VisitNodeFunc)(PokemonNode *); 
 
 /**
  * @brief Generic BFS traversal: call visit() on each node (level-order).
@@ -201,7 +201,7 @@ typedef void (*VisitNodeFunc)(PokemonNode *);
  * @param visit function pointer for what to do with each node
  * Why we made it: BFS plus function pointers => flexible traversal.
  */
-void BFSGeneric(PokemonNode *root, VisitNodeFunc visit);
+void BFSGeneric(PokemonNode *root, VisitNodeFunc visit); 
 
 /**
  * @brief A generic pre-order traversal (Root-Left-Right).
@@ -209,7 +209,7 @@ void BFSGeneric(PokemonNode *root, VisitNodeFunc visit);
  * @param visit function pointer
  * Why we made it: Another demonstration of function-pointer-based traversal.
  */
-void preOrderGeneric(PokemonNode *root, VisitNodeFunc visit);
+void preOrderGeneric(PokemonNode *root, VisitNodeFunc visit); 
 
 /**
  * @brief A generic in-order traversal (Left-Root-Right).
@@ -217,7 +217,7 @@ void preOrderGeneric(PokemonNode *root, VisitNodeFunc visit);
  * @param visit function pointer
  * Why we made it: Great for seeing sorted order if BST is sorted by ID.
  */
-void inOrderGeneric(PokemonNode *root, VisitNodeFunc visit);
+void inOrderGeneric(PokemonNode *root, VisitNodeFunc visit); 
 
 /**
  * @brief A generic post-order traversal (Left-Right-Root).
@@ -343,7 +343,7 @@ void addPokemon(OwnerNode *owner);
  * @param owner pointer to the Owner
  * Why we made it: Another user function for releasing a Pokemon.
  */
-void freePokemon(OwnerNode *owner);
+void freePokemon(OwnerNode *owner); 
 
 /* ------------------------------------------------------------
    7) Display Menu for a Pokedex
@@ -398,7 +398,7 @@ void removeOwnerFromCircularList(OwnerNode *target);
  * @return pointer to the matching OwnerNode or NULL
  * Why we made it: We often need to locate an owner quickly.
  */
-OwnerNode *findOwnerByName(const char *name);
+OwnerNode *findOwnerByName(const char *name); 
 
 /* ------------------------------------------------------------
    10) Owner Menus
@@ -408,25 +408,25 @@ OwnerNode *findOwnerByName(const char *name);
  * @brief Let user pick an existing Pokedex (owner) by number, then sub-menu.
  * Why we made it: This is the main interface for adding/fighting/evolving, etc.
  */
-void enterExistingPokedexMenu(void);
+void enterExistingPokedexMenu(void); 
 
 /**
  * @brief Creates a new Pokedex (prompt for name, check uniqueness, choose starter).
  * Why we made it: The main entry for building a brand-new Pokedex.
  */
-void openPokedexMenu(void);
+void openPokedexMenu(void); 
 
 /**
  * @brief Delete an entire Pokedex (owner) from the list.
  * Why we made it: Let user pick which Pokedex to remove and free everything.
  */
-void deletePokedex(void);
+void deletePokedex(void); 
 
 /**
  * @brief Merge the second owner's Pokedex into the first, then remove the second owner.
  * Why we made it: BFS copy demonstration plus removing an owner.
  */
-void mergePokedexMenu(void);
+void mergePokedexMenu(void); 
 
 /* ------------------------------------------------------------
    11) Printing Owners in a Circle
@@ -436,7 +436,7 @@ void mergePokedexMenu(void);
  * @brief Print owners left or right from head, repeating as many times as user wants.
  * Why we made it: Demonstrates stepping through a circular list in a chosen direction.
  */
-void printOwnersCircular(void);
+void printOwnersCircular(void); 
 
 /* ------------------------------------------------------------
    12) Cleanup All Owners at Program End
@@ -446,7 +446,7 @@ void printOwnersCircular(void);
  * @brief Frees every remaining owner in the circular list, setting ownerHead = NULL.
  * Why we made it: Ensures a squeaky-clean exit with no leftover memory.
  */
-void freeAllOwners(void);
+void freeAllOwners(void); 
 
 /* ------------------------------------------------------------
    13) The Main Menu
@@ -456,7 +456,20 @@ void freeAllOwners(void);
  * @brief The main driver loop for the program (new pokedex, merge, fight, etc.).
  * Why we made it: Our top-level UI that keeps the user engaged until they exit.
  */
-void mainMenu(void);
+void mainMenu(void); 
+//
+// My Helper functions:
+//
+bool isNameUnique(OwnerNode *ownerHead, const char *ownerName) 
+
+const char *EvoStatus[]  = {
+    "No",
+    "Yes"
+};
+void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot)
+PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2)
+
+
 
 // Array of Pokemon data
 static const PokemonData pokedex[] = {
@@ -610,6 +623,7 @@ static const PokemonData pokedex[] = {
     {148, "Dragonair", DRAGON, 61, 84, CAN_EVOLVE},
     {149, "Dragonite", DRAGON, 91, 134, CANNOT_EVOLVE},
     {150, "Mewtwo", PSYCHIC, 106, 110, CANNOT_EVOLVE},
-    {151, "Mew", PSYCHIC, 100, 100, CANNOT_EVOLVE}};
+    {151, "Mew", PSYCHIC, 100, 100, CANNOT_EVOLVE}
+};
 
 #endif // EX6_H
