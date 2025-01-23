@@ -227,7 +227,6 @@ void removeOwnerFromCircularList(OwnerNode *target)
     }
     freeOwnerNode(target);
 }
-
 //
 PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode)
 {
@@ -851,7 +850,7 @@ void freePokemonTree(PokemonNode *root)
     freePokemonTree(root->right);
     freePokemonNode(root);    
 }
-void deletePokedex(void)
+void deletePokedex()
 {
     int choice;
     printf("\n=== Delete a Pokedex ===\n");
@@ -869,12 +868,7 @@ void deletePokedex(void)
     for(int i = 1; i < choice; i++)
         cur = cur->next;
     printf("\nDeleting %s's entire Pokedex...\n", cur->ownerName);    
-    freePokemonTree(cur->pokedexRoot);
-    free(cur->ownerName);
-    OwnerNode *before = cur->prev;
-    OwnerNode *after = cur->next;
-    after->prev = before;
-    before->next = after;
+    removeOwnerFromCircularList(cur);
     free(cur);
     printf("Pokedex deleted.")
 }
@@ -886,10 +880,6 @@ void freeOwnerNode(OwnerNode *owner)
     owner->next = NULL;
     owner->prev = NULL;
     free(owner);
-}
-void removeOwnerFromCircularList(OwnerNode *target)
-{
-    
 }
 void mergePokedexMenu()
 {
@@ -959,6 +949,7 @@ void sortOwners()
         }
         last = current;
     } while (swapped);
+    printf("Owners sorted by name.");
 }
 //
 void printOwnersCircular()
