@@ -808,12 +808,6 @@ void openPokedexMenu()
 {
     int choice;
     OwnerNode *newOwner = (OwnerNode *)malloc(sizeof(OwnerNode));
-    if (ownerHead == NULL)
-    {
-        newOwner->next = newOwner->prev = newOwner;
-        ownerHead = newOwner;
-        return;
-    }
     OwnerNode *last = ownerHead->prev;
     last->next = newOwner;
     newOwner->prev = last;
@@ -948,6 +942,11 @@ void sortOwners()
 //
 void printOwnersCircular()
 {
+    if(ownerHead == NULL)
+    {
+      printf("No owners.");
+      return;
+    }
     char  direction;
     int prints;
     printf("Enter direction (F or B): ");
