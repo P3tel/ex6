@@ -48,6 +48,7 @@ typedef struct PokemonNode
     PokemonData *data;
     struct PokemonNode *left;
     struct PokemonNode *right;
+    struct PokemonNode *next;
 } PokemonNode;
 
 // Linked List Node (for Owners)
@@ -114,7 +115,7 @@ const char *getTypeName(PokemonType type);
  * @return newly allocated PokemonNode*
  * Why we made it: We need a standard way to allocate BST nodes.
  */
-PokemonNode *createPokemonNode(const PokemonData *data); 
+PokemonNode *createPokemonNode(PokemonData *data); 
 
 /**
  * @brief Create an OwnerNode for the circular owners list.
@@ -461,18 +462,20 @@ void mainMenu(void);
 // My Helper functions:
 //
 bool isNameUnique(OwnerNode *temp, const char *ownerName);
-const char[] EvoStatus[] =
-{
-    "No",
-    "Yes"
-};
+//const char[] EvoStatus[] =
+//{
+  //  "No",
+    //"Yes"
+//};
+const char *EvoStatus(EvolutionStatus evo);
+
 void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot);
 PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2);
-
+void clearInputReader();
 
 
 // Array of Pokemon data
-static const PokemonData pokedex[] = {
+static PokemonData pokedex[] = {
     {1, "Bulbasaur", GRASS, 45, 49, CAN_EVOLVE},
     {2, "Ivysaur", GRASS, 60, 62, CAN_EVOLVE},
     {3, "Venusaur", GRASS, 80, 82, CANNOT_EVOLVE},
