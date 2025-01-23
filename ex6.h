@@ -460,9 +460,9 @@ void mainMenu(void);
 //
 // My Helper functions:
 //
-bool isNameUnique(OwnerNode *ownerHead, const char *ownerName) 
-
-const char *EvoStatus[]  = {
+bool isNameUnique(OwnerNode *temp, const char *ownerName) 
+static const char EvoStatus[] =
+{
     "No",
     "Yes"
 };
