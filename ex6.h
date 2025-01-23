@@ -460,14 +460,14 @@ void mainMenu(void);
 //
 // My Helper functions:
 //
-bool isNameUnique(OwnerNode *temp, const char *ownerName) 
-static const char EvoStatus[] =
+bool isNameUnique(OwnerNode *temp, const char *ownerName);
+static const char[] EvoStatus[] =
 {
-    {"No"},
-    {"Yes"}
+    "No",
+    "Yes"
 };
-void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot)
-PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2)
+void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot);
+PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2);
 
 
 
