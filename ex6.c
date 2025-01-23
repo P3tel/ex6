@@ -26,7 +26,8 @@ void printPokemonNode(PokemonNode *node)
 }
 void displayAlphabetical(PokemonNode *root)
 {
-    if (root == NULL) {
+    if (root == NULL) 
+    {
         printf("Tree is empty.\n");
         return;
     }
@@ -35,7 +36,8 @@ void displayAlphabetical(PokemonNode *root)
     collectAll(root, &na);
     qsort(na.nodes, na.size, sizeof(PokemonNode *), compareByNameNode);
     printf("Pokemon in alphabetical order:\n");
-    for (int i = 0; i < na.size; i++) {
+    for (int i = 0; i < na.size; i++) 
+    {
        printPokemonNode(na.nodes[i]);
     }
     free(na.nodes);
@@ -135,7 +137,7 @@ int compareByNameNode(const void *a, const void *b)
     return strcmp(nodeA->data->name, nodeB->data->name);
 }
 //
-void freeAllOwners(Owner *ownerHead)
+void freeAllOwners()
 {
     if (ownerHead == NULL)
         return;
@@ -150,17 +152,17 @@ void freeAllOwners(Owner *ownerHead)
     ownerHead = NULL; 
 }
 //
-bool isNameUnique(Owner *ownerHead, const char *ownerName) 
+bool isNameUnique(Owner *temp, const char *ownerName) 
 {
     int count = 0;
-    while (ownerHead != NULL) 
+    do
     {
-        if (strcmp(ownerHead->name, ownerName) == 0) 
+        if (strcmp(temp->name, ownerName) == 0) 
         {
             return false;
         }
-        ownerHead = ownerHead->next;
-    }
+        temp = temp->next;
+    }while (temp != ownerHead) 
     return count == 0;
 }
 void swapOwnerData(OwnerNode *a, OwnerNode *b)
