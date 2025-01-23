@@ -463,8 +463,8 @@ void mainMenu(void);
 bool isNameUnique(OwnerNode *temp, const char *ownerName) 
 static const char EvoStatus[] =
 {
-    "No",
-    "Yes"
+    {"No"},
+    {"Yes"}
 };
 void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot)
 PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2)
@@ -623,7 +623,6 @@ static const PokemonData pokedex[] = {
     {148, "Dragonair", DRAGON, 61, 84, CAN_EVOLVE},
     {149, "Dragonite", DRAGON, 91, 134, CANNOT_EVOLVE},
     {150, "Mewtwo", PSYCHIC, 106, 110, CANNOT_EVOLVE},
-    {151, "Mew", PSYCHIC, 100, 100, CANNOT_EVOLVE}
-};
+    {151, "Mew", PSYCHIC, 100, 100, CANNOT_EVOLVE}};
 
 #endif // EX6_H
