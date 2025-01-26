@@ -79,9 +79,9 @@ const char *EvoStatus(EvolutionStatus evo)
   switch(evo)
   {
   case CANNOT_EVOLVE:
-    return "no";
+    return "No";
   default:
-    return "yes";
+    return "Yes";
   }
 }
 void displayAlphabetical(PokemonNode *root)
@@ -633,7 +633,7 @@ void freePokemon(OwnerNode *owner)
       printf("No Pokemon to release.");
       return;
     }
-    int ID = readIntSafe("Enter ID to release: ");
+    int ID = readIntSafe("Enter Pokemon ID to release: ");
     if(searchPokemonBFS(owner->pokedexRoot,ID) != NULL)
     {
       owner->pokedexRoot = removePokemonByID(owner->pokedexRoot, ID);
@@ -832,6 +832,7 @@ void deletePokedex()
     int count = 1;
     do {
         printf("%d. %s\n",count,cur->ownerName);
+        cur = cur->next;
     } while (cur != ownerHead); 
     choice = readIntSafe("Choose a Pokedex to delete by number: ");
     for(int i = 1; i < choice; i++)
@@ -868,6 +869,7 @@ void mergePokedexMenu()
     owner2 = findOwnerByName(name2);
 	  owner1->pokedexRoot = mergePokemonTrees(owner1->pokedexRoot, owner2->pokedexRoot);
 	  removeOwnerFromCircularList(owner2);
+    printf("Merging %s and %s...",name1,name2);
     printf("\nMerge completed.\n");
     printf("Owner '%s' has been removed after merging.\n",name2);
     free(name1);
