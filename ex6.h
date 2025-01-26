@@ -476,6 +476,12 @@ const char *EvoStatus(EvolutionStatus evo);
 void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot);
 PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2);
 void clearInputReader();
+Queue* createQueue();
+int isQueueEmpty(Queue* q);
+void enqueue(Queue* q, PokemonNode* newNode);
+PokemonNode* dequeue(Queue* q);
+void freeQueue(Queue *q);
+
 
 
 // Array of Pokemon data
