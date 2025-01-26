@@ -674,7 +674,7 @@ void evolvePokemon(OwnerNode *owner)
 {
     if(owner->pokedexRoot == NULL)
     {
-      printf("Cannot evolve. Pokedex is empty.");
+      printf("Cannot evolve. Pokedex empty.");
       return;
     }
     int ID;
@@ -837,7 +837,7 @@ void deletePokedex()
     choice = readIntSafe("Choose a Pokedex to delete by number: ");
     for(int i = 1; i < choice; i++)
         cur = cur->next;
-    printf("\nDeleting %s's entire Pokedex...\n", cur->ownerName);    
+    printf("Deleting %s's entire Pokedex...\n", cur->ownerName);    
     removeOwnerFromCircularList(cur);
     printf("Pokedex deleted.");
 }
