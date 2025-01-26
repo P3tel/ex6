@@ -51,6 +51,16 @@ typedef struct PokemonNode
     struct PokemonNode *next;
 } PokemonNode;
 
+typedef struct QueueNode {
+    PokemonNode *pokemonNode;
+    struct QueueNode *next;
+} QueueNode;
+
+typedef struct Queue {
+    QueueNode *front;
+    QueueNode *rear;
+} Queue;
+
 // Linked List Node (for Owners)
 typedef struct OwnerNode
 {
@@ -461,14 +471,8 @@ void mainMenu(void);
 //
 // My Helper functions:
 //
-bool isNameUnique(OwnerNode *temp, const char *ownerName);
-//const char[] EvoStatus[] =
-//{
-  //  "No",
-    //"Yes"
-//};
+bool isNameUnique(OwnerNode *temp,char *ownerName);
 const char *EvoStatus(EvolutionStatus evo);
-
 void collectAndInsert(PokemonNode *root, PokemonNode **targetRoot);
 PokemonNode *mergePokemonTrees(PokemonNode *root1, PokemonNode *root2);
 void clearInputReader();
