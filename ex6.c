@@ -95,7 +95,6 @@ void displayAlphabetical(PokemonNode *root)
     initNodeArray(&na, 10);
     collectAll(root, &na);
     qsort(na.nodes, na.size, sizeof(PokemonNode *), compareByNameNode);
-    printf("Pokemon in alphabetical order:\n");
     for (int i = 0; i < na.size; i++) 
     {
        printPokemonNode(na.nodes[i]);
@@ -646,7 +645,7 @@ void pokemonFight(OwnerNode *owner)
 {
     if(owner->pokedexRoot == NULL)
     {
-      printf("Pokedex is empty");
+      printf("Pokedex is empty.");
       return;
     }
     int ID1,ID2;
@@ -675,7 +674,7 @@ void evolvePokemon(OwnerNode *owner)
 {
     if(owner->pokedexRoot == NULL)
     {
-      printf("Pokedex is empty.");
+      printf("Cannot evolve. Pokedex is empty.");
       return;
     }
     int ID;
@@ -833,6 +832,7 @@ void deletePokedex()
     do {
         printf("%d. %s\n",count,cur->ownerName);
         cur = cur->next;
+        count++;
     } while (cur != ownerHead); 
     choice = readIntSafe("Choose a Pokedex to delete by number: ");
     for(int i = 1; i < choice; i++)
@@ -861,9 +861,9 @@ void mergePokedexMenu()
     OwnerNode *owner1;
     OwnerNode *owner2;
     char *name1,*name2;
-    printf("Enter name of first owner:");
+    printf("Enter name of first owner: ");
     name1 = getDynamicInput();
-    printf("Enter name of second owner:");
+    printf("Enter name of second owner: ");
     name2 = getDynamicInput();
     owner1 = findOwnerByName(name1);
     owner2 = findOwnerByName(name2);
